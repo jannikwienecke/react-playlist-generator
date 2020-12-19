@@ -1,4 +1,5 @@
 import LoginForm from "app/auth/components/LoginForm"
+import { AppProvider } from "app/context/AppProvider"
 import { BaseProvider, LightTheme } from "baseui"
 import { AppProps, AuthenticationError, AuthorizationError, ErrorComponent, useRouter } from "blitz"
 import { ErrorBoundary, FallbackProps } from "react-error-boundary"
@@ -13,15 +14,17 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <StyletronProvider value={styletron}>
       <BaseProvider theme={LightTheme}>
-        <ErrorBoundary
-          FallbackComponent={RootErrorFallback}
-          resetKeys={[router.asPath]}
-          onReset={() => {
-            queryCache.resetErrorBoundaries()
-          }}
-        >
-          {getLayout(<Component {...pageProps} />)}
-        </ErrorBoundary>
+        <AppProvider>
+          <ErrorBoundary
+            FallbackComponent={RootErrorFallback}
+            resetKeys={[router.asPath]}
+            onReset={() => {
+              queryCache.resetErrorBoundaries()
+            }}
+          >
+            {getLayout(<Component {...pageProps} />)}
+          </ErrorBoundary>
+        </AppProvider>
       </BaseProvider>
     </StyletronProvider>
   )

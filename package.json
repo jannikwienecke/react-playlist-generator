@@ -37,6 +37,8 @@
   "dependencies": {
     "@prisma/cli": "~2.12",
     "@prisma/client": "~2.12",
+    "@types/react-query": "1.1.2",
+    "@types/spotify-api": "0.0.5",
     "@types/styletron-engine-atomic": "1.1.0",
     "@types/styletron-react": "5.0.2",
     "@types/styletron-standard": "2.0.1",
@@ -50,6 +52,8 @@
     "react-dom": "0.0.0-experimental-4ead6b530",
     "react-error-boundary": "2.3.2",
     "react-final-form": "6.5.2",
+    "react-query": "3.3.2",
+    "react-spotify-api": "3.0.0",
     "secure-password": "4.0.0",
     "styletron-engine-atomic": "1.4.6",
     "styletron-react": "5.2.7",

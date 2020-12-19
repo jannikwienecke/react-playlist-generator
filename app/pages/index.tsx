@@ -1,24 +1,23 @@
+import { useSpotifyToken } from "app/context/AppProvider"
 import Layout from "app/layouts/Layout"
-import { Button, KIND, SIZE } from "baseui/button"
-import { Paragraph2 } from "baseui/typography"
-import { BlitzPage } from "blitz"
+import { Button } from "baseui/button"
+import { BlitzPage, Link } from "blitz"
 import React from "react"
-
-import { motion } from "framer-motion"
-import { Frame } from "framer"
-
+import { SPOTIFY_AUTH_URL } from "../spotify.config"
+import { StyledLink } from "baseui/link"
 const Home: BlitzPage = () => {
+  const redirectToSpotifyLogin = () => {
+    window.location.assign(SPOTIFY_AUTH_URL)
+  }
+
   return (
     <div className="container">
       <main>
         <h1>React - Playlist - Generator</h1>
 
-        <Button kind={KIND.primary} size={SIZE.default}>
-          Hello World
+        <Button onClick={redirectToSpotifyLogin} isLoading={false}>
+          Login Spotify
         </Button>
-        <motion.div animate={{ opacity: 1 }} initial={{ opacity: 0 }}>
-          HELLO WORLD{" "}
-        </motion.div>
       </main>
     </div>
   )
