@@ -933,4 +933,3 @@ declare namespace SpotifyApi {
     uri: string
   }
 }
-export { UserObjectPublic }

@@ -1,9 +1,5 @@
 import { BlitzScript } from "blitz"
-// import Document, { Html, Head, Main } from "next/document"
-// import { Provider as StyletronProvider } from "styletron-react"
-// import { styletron } from "../styletron"
-
-import Document, { Html, Head, Main } from "next/document"
+import Document, { Head, Html, Main } from "next/document"
 import { Provider as StyletronProvider } from "styletron-react"
 import { styletron } from "../styletron"
 

@@ -23,7 +23,11 @@ const Navbar = () => {
             </Link>
           </StyledNavigationItem>
           <StyledNavigationItem>
-            <StyledLink href="#basic-link2">Tab Link Two</StyledLink>
+            <StyledLink>
+              <Link href="track">
+                <StyledLink>Tracks</StyledLink>
+              </Link>
+            </StyledLink>
           </StyledNavigationItem>
         </StyledNavigationList>
         <StyledNavigationList $align={ALIGN.right}>

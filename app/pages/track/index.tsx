@@ -16,11 +16,12 @@ const itemProps: BlockProps = {
   justifyContent: "center",
 }
 
-export const Artist = () => {
+export const Track = () => {
   return (
     <div>
-      <ArtistSearch searchType="artist">
+      <ArtistSearch searchType="track">
         {(searchResults) => {
+          console.log("searchResult", searchResults)
           return (
             // <div></div>
             <>
@@ -30,15 +31,19 @@ export const Artist = () => {
                 flexGridRowGap="scale800"
               >
                 {searchResults &&
-                  searchResults.artists.items.map((artist) => (
-                    <FlexGridItem {...itemProps}>
-                      <img
-                        style={{ maxWidth: "100%", maxHeight: "100%" }}
-                        src={artist.images[0] && artist.images[0].url}
-                        alt={artist.name}
-                      />
-                    </FlexGridItem>
-                  ))}
+                  searchResults.tracks.items.map((track) => {
+                    console.log("track", track)
+                    return (
+                      <FlexGridItem {...itemProps}>
+                        {track.name}
+                        {/* <img
+                          style={{ maxWidth: "100%", maxHeight: "100%" }}
+                          src={track.images[0] && track.images[0].url}
+                          alt={track.name}
+                        /> */}
+                      </FlexGridItem>
+                    )
+                  })}
               </FlexGrid>
             </>
           )
@@ -48,6 +53,6 @@ export const Artist = () => {
   )
 }
 
-Artist.getLayout = (page) => <Layout title="Artist">{page}</Layout>
+Track.getLayout = (page) => <Layout title="Artist">{page}</Layout>
 
-export default Artist
+export default Track

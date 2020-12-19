@@ -3,7 +3,6 @@ import { AppProvider } from "app/context/AppProvider"
 import { BaseProvider, LightTheme } from "baseui"
 import { AppProps, AuthenticationError, AuthorizationError, ErrorComponent, useRouter } from "blitz"
 import { ErrorBoundary, FallbackProps } from "react-error-boundary"
-import { queryCache } from "react-query"
 import { Provider as StyletronProvider } from "styletron-react"
 import { styletron } from "../styletron"
 
@@ -15,13 +14,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <StyletronProvider value={styletron}>
       <BaseProvider theme={LightTheme}>
         <AppProvider>
-          <ErrorBoundary
-            FallbackComponent={RootErrorFallback}
-            resetKeys={[router.asPath]}
-            onReset={() => {
-              queryCache.resetErrorBoundaries()
-            }}
-          >
+          <ErrorBoundary FallbackComponent={RootErrorFallback} resetKeys={[router.asPath]}>
             {getLayout(<Component {...pageProps} />)}
           </ErrorBoundary>
         </AppProvider>
@@ -30,7 +23,7 @@ export default function App({ Component, pageProps }: AppProps) {
   )
 }
 
-function RootErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
+export function RootErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
   if (error instanceof AuthenticationError) {
     return <LoginForm onSuccess={resetErrorBoundary} />
   } else if (error instanceof AuthorizationError) {

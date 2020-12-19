@@ -2,7 +2,10 @@ import { useSpotifyToken } from "app/context/AppProvider"
 import { Head, useRouter } from "blitz"
 import React, { ReactNode } from "react"
 import Navbar from "./Navbar"
-import { QueryClient, QueryClientProvider } from "react-query"
+import { QueryClient, QueryClientProvider, useQueryErrorResetBoundary } from "react-query"
+import { ReactQueryDevtools } from "react-query/devtools"
+import { RootErrorFallback } from "app/pages/_app"
+import { ErrorBoundary } from "react-error-boundary"
 
 type LayoutProps = {
   title?: string
@@ -10,9 +13,10 @@ type LayoutProps = {
 }
 
 const Layout = ({ title, children }: LayoutProps) => {
-  const [loading, setLoading] = React.useState(true)
   const { token } = useSpotifyToken()
   const router = useRouter()
+  const { reset } = useQueryErrorResetBoundary()
+
   const queryClient = new QueryClient()
 
   React.useEffect(() => {
@@ -40,7 +44,16 @@ const Layout = ({ title, children }: LayoutProps) => {
       </Head>
       <Navbar />
 
-      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+      <QueryClientProvider client={queryClient}>
+        <ErrorBoundary
+          FallbackComponent={RootErrorFallback}
+          resetKeys={[router.asPath]}
+          onReset={reset}
+        >
+          {children}
+          <ReactQueryDevtools initialIsOpen={false} />
+        </ErrorBoundary>
+      </QueryClientProvider>
     </>
   )
 }
