@@ -14,7 +14,11 @@ class MyDocument extends Document {
         <App {...props} />
       </StyletronProvider>
     ))
-    const stylesheets = styletron.getStylesheets() || []
+
+    let stylesheets: any[] = []
+    if ("getStylesheets" in styletron) {
+      stylesheets = styletron.getStylesheets() || []
+    }
     return { ...page, stylesheets }
   }
 
@@ -22,15 +26,17 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          {this.props.stylesheets.map((sheet, i) => (
-            <style
-              className="_styletron_hydrate_"
-              dangerouslySetInnerHTML={{ __html: sheet.css }}
-              media={sheet.attrs.media}
-              data-hydrate={sheet.attrs["data-hydrate"]}
-              key={i}
-            />
-          ))}
+          {this.props &&
+            this.props.stylesheets &&
+            this.props.stylesheets.map((sheet, i) => (
+              <style
+                className="_styletron_hydrate_"
+                dangerouslySetInnerHTML={{ __html: sheet.css }}
+                media={sheet.attrs.media}
+                data-hydrate={sheet.attrs["data-hydrate"]}
+                key={i}
+              />
+            ))}
         </Head>
         <body>
           <Main />
