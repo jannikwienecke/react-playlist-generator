@@ -1,24 +1,29 @@
-import { AppProps, ErrorComponent, useRouter, AuthenticationError, AuthorizationError } from "blitz"
+import LoginForm from "app/auth/components/LoginForm"
+import { BaseProvider, LightTheme } from "baseui"
+import { AppProps, AuthenticationError, AuthorizationError, ErrorComponent, useRouter } from "blitz"
 import { ErrorBoundary, FallbackProps } from "react-error-boundary"
 import { queryCache } from "react-query"
-import LoginForm from "app/auth/components/LoginForm"
+import { Provider as StyletronProvider } from "styletron-react"
+import { styletron } from "../styletron"
 
 export default function App({ Component, pageProps }: AppProps) {
   const getLayout = Component.getLayout || ((page) => page)
   const router = useRouter()
 
   return (
-    <ErrorBoundary
-      FallbackComponent={RootErrorFallback}
-      resetKeys={[router.asPath]}
-      onReset={() => {
-        // This ensures the Blitz useQuery hooks will automatically refetch
-        // data any time you reset the error boundary
-        queryCache.resetErrorBoundaries()
-      }}
-    >
-      {getLayout(<Component {...pageProps} />)}
-    </ErrorBoundary>
+    <StyletronProvider value={styletron}>
+      <BaseProvider theme={LightTheme}>
+        <ErrorBoundary
+          FallbackComponent={RootErrorFallback}
+          resetKeys={[router.asPath]}
+          onReset={() => {
+            queryCache.resetErrorBoundaries()
+          }}
+        >
+          {getLayout(<Component {...pageProps} />)}
+        </ErrorBoundary>
+      </BaseProvider>
+    </StyletronProvider>
   )
 }
 
