@@ -1,4 +1,5 @@
 import { useSpotifyToken } from "app/context/AppProvider"
+import { dynamic } from "blitz"
 import React from "react"
 import SpotifyWebPlayer from "react-spotify-web-playback"
 
@@ -25,4 +26,6 @@ const SpotifyPlayer = () => {
   )
 }
 
-export default SpotifyPlayer
+export default dynamic(() => Promise.resolve(SpotifyPlayer), {
+  ssr: false,
+})

@@ -1,11 +1,11 @@
 import { useSpotifyToken } from "app/context/AppProvider"
+import { RootErrorFallback } from "app/pages/_app"
 import { Head, useRouter } from "blitz"
 import React, { ReactNode } from "react"
-import Navbar from "./Navbar"
-import { QueryClient, QueryClientProvider, useQueryErrorResetBoundary } from "react-query"
-import { ReactQueryDevtools } from "react-query/devtools"
-import { RootErrorFallback } from "app/pages/_app"
 import { ErrorBoundary } from "react-error-boundary"
+import { useQueryErrorResetBoundary } from "react-query"
+import { ReactQueryDevtools } from "react-query/devtools"
+import Navbar from "./Navbar"
 
 type LayoutProps = {
   title?: string
@@ -16,8 +16,6 @@ const Layout = ({ title, children }: LayoutProps) => {
   const { token } = useSpotifyToken()
   const router = useRouter()
   const { reset } = useQueryErrorResetBoundary()
-
-  const queryClient = new QueryClient()
 
   React.useEffect(() => {
     if (token) return
@@ -30,30 +28,22 @@ const Layout = ({ title, children }: LayoutProps) => {
     router.replace("/")
   })
 
-  // React.useEffect(() => {
-  //   setTimeout(() => {
-  //     setLoading(false)
-  //   }, 500)
-  // }, [])
-
   return (
     <>
       <Head>
         <title>{title || "app-playlist-creator"}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Navbar />
 
-      <QueryClientProvider client={queryClient}>
-        <ErrorBoundary
-          FallbackComponent={RootErrorFallback}
-          resetKeys={[router.asPath]}
-          onReset={reset}
-        >
-          {children}
-          <ReactQueryDevtools initialIsOpen={false} />
-        </ErrorBoundary>
-      </QueryClientProvider>
+      <Navbar />
+      <ErrorBoundary
+        FallbackComponent={RootErrorFallback}
+        resetKeys={[router.asPath]}
+        onReset={reset}
+      >
+        {children}
+        <ReactQueryDevtools initialIsOpen={false} />
+      </ErrorBoundary>
     </>
   )
 }

@@ -1,15 +1,9 @@
+import ArtistSearch from "app/components/ArtistSeach"
+import SpotifyPlayer from "app/components/SpotifyPlayer"
 import Layout from "app/layouts/Layout"
 import { BlockProps } from "baseui/block"
 import { FlexGrid, FlexGridItem } from "baseui/flex-grid"
-import dynamic from "next/dynamic"
 import React from "react"
-
-const ArtistSearch = dynamic(() => import("app/components/ArtistSeach"), {
-  ssr: false,
-})
-const SpotifyPlayer = dynamic(() => import("app/components/SpotifyPlayer"), {
-  ssr: false,
-})
 
 const itemProps: BlockProps = {
   backgroundColor: "mono300",
@@ -24,9 +18,7 @@ export const Artist = () => {
     <div>
       <ArtistSearch searchType="artist">
         {(searchResults) => {
-          console.log("searchResults", searchResults?.artists)
           return (
-            // <div></div>
             <>
               <FlexGrid
                 flexGridColumnCount={2}

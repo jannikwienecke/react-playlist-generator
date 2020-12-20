@@ -3,8 +3,10 @@ import { AppProvider } from "app/context/AppProvider"
 import { BaseProvider, LightTheme } from "baseui"
 import { AppProps, AuthenticationError, AuthorizationError, ErrorComponent, useRouter } from "blitz"
 import { ErrorBoundary, FallbackProps } from "react-error-boundary"
+import { QueryClient, QueryClientProvider } from "react-query"
 import { Provider as StyletronProvider } from "styletron-react"
 import { styletron } from "../styletron"
+const queryClient = new QueryClient()
 
 export default function App({ Component, pageProps }: AppProps) {
   const getLayout = Component.getLayout || ((page) => page)
@@ -13,11 +15,13 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <StyletronProvider value={styletron}>
       <BaseProvider theme={LightTheme}>
-        <AppProvider>
-          <ErrorBoundary FallbackComponent={RootErrorFallback} resetKeys={[router.asPath]}>
-            {getLayout(<Component {...pageProps} />)}
-          </ErrorBoundary>
-        </AppProvider>
+        <QueryClientProvider client={queryClient}>
+          <AppProvider>
+            <ErrorBoundary FallbackComponent={RootErrorFallback} resetKeys={[router.asPath]}>
+              {getLayout(<Component {...pageProps} />)}
+            </ErrorBoundary>
+          </AppProvider>
+        </QueryClientProvider>
       </BaseProvider>
     </StyletronProvider>
   )

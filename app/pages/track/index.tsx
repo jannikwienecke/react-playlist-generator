@@ -1,12 +1,8 @@
+import ArtistSearch from "app/components/ArtistSeach"
 import Layout from "app/layouts/Layout"
 import { BlockProps } from "baseui/block"
 import { FlexGrid, FlexGridItem } from "baseui/flex-grid"
-import dynamic from "next/dynamic"
 import React from "react"
-
-const ArtistSearch = dynamic(() => import("app/components/ArtistSeach"), {
-  ssr: false,
-})
 
 const itemProps: BlockProps = {
   backgroundColor: "mono300",
@@ -21,8 +17,6 @@ export const Track = () => {
     <div>
       <ArtistSearch searchType="track">
         {(searchResults) => {
-          console.log("searchResult == ", searchResults && searchResults.tracks.items[0].href)
-
           return (
             <>
               <FlexGrid

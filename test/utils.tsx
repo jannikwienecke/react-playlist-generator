@@ -1,8 +1,11 @@
-import React from "react"
-import { RouterContext, BlitzRouter } from "blitz"
 import { render as defaultRender } from "@testing-library/react"
 import { renderHook as defaultRenderHook } from "@testing-library/react-hooks"
-
+import { AppProvider } from "app/context/AppProvider"
+import { BlitzRouter, RouterContext } from "blitz"
+import React from "react"
+import { QueryClient, QueryClientProvider } from "react-query"
+import { screen, waitForElementToBeRemoved } from "test/utils"
+// import * as search from "app/spotifyAPI/useSearch"
 export * from "@testing-library/react"
 
 // --------------------------------------------------------------------------------
@@ -25,12 +28,26 @@ export * from "@testing-library/react"
 //   router: { pathname: '/my-custom-pathname' },
 // });
 // --------------------------------------------------
+const queryClient = new QueryClient()
+
+export const waitForLoadingToFinish = () =>
+  waitForElementToBeRemoved(
+    () => [...screen.queryAllByLabelText(/loading/i), ...screen.queryAllByText(/loading/i)],
+    { timeout: 300 }
+  )
+
 export function render(ui: RenderUI, { wrapper, router, ...options }: RenderOptions = {}) {
   if (!wrapper) {
     // Add a default context wrapper if one isn't supplied from the test
+    // const token "o8kyKSPtDS3dlH9ltJlomYs4XiJo_79ntQb5kveeta0OR2e2Ya1n4_wH0rM2UAJ7uYiBRooluE1QEsHkiLw"
+    // const token =
+    //   "BQCuiy0aXl1KBLekawbIl9iNQwfFilVPG9lP5yseNHI2Ue0KXa5lP0QoLxi5VGNxy_v1TKnM_9PUERuQ-K22o_5uVm_hHjQfoSwqdV4TdhIrKwVfeu21Hx7eY7qsnOqgoCaA2WpNE_xRgU99QQlw5x8LZXVO3RPeVqmTq1sj"
     wrapper = ({ children }) => (
       <RouterContext.Provider value={{ ...mockRouter, ...router }}>
-        {children}
+        {/* {children} */}
+        <QueryClientProvider client={queryClient}>
+          <AppProvider>{children}</AppProvider>
+        </QueryClientProvider>
       </RouterContext.Provider>
     )
   }
@@ -56,7 +73,7 @@ export function renderHook(
     // Add a default context wrapper if one isn't supplied from the test
     wrapper = ({ children }) => (
       <RouterContext.Provider value={{ ...mockRouter, ...router }}>
-        {children}
+        <AppProvider>{children}</AppProvider>
       </RouterContext.Provider>
     )
   }
