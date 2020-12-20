@@ -12,7 +12,7 @@
 // but when it is sent in https://developer.spotify.com/web-api/console/get-current-user-saved-tracks
 // the available_markets are missing. Therefore it is marked as optional in this source code.
 
-declare namespace SpotifyApi {
+export declare namespace SpotifyApi {
   //
   // Parameter Objects for searching
   //
