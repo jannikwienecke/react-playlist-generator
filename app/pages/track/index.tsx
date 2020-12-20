@@ -21,9 +21,9 @@ export const Track = () => {
     <div>
       <ArtistSearch searchType="track">
         {(searchResults) => {
-          console.log("searchResult", searchResults)
+          console.log("searchResult == ", searchResults && searchResults.tracks.items[0].href)
+
           return (
-            // <div></div>
             <>
               <FlexGrid
                 flexGridColumnCount={2}
@@ -33,16 +33,7 @@ export const Track = () => {
                 {searchResults &&
                   searchResults.tracks.items.map((track) => {
                     console.log("track", track)
-                    return (
-                      <FlexGridItem {...itemProps}>
-                        {track.name}
-                        {/* <img
-                          style={{ maxWidth: "100%", maxHeight: "100%" }}
-                          src={track.images[0] && track.images[0].url}
-                          alt={track.name}
-                        /> */}
-                      </FlexGridItem>
-                    )
+                    return <FlexGridItem {...itemProps}>{track.name}</FlexGridItem>
                   })}
               </FlexGrid>
             </>
@@ -53,6 +44,6 @@ export const Track = () => {
   )
 }
 
-Track.getLayout = (page) => <Layout title="Artist">{page}</Layout>
+Track.getLayout = (page) => <Layout title="Track">{page}</Layout>
 
 export default Track

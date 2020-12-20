@@ -1,6 +1,5 @@
 import React from "react"
 import { client } from "utils/utils"
-import { useQueryClient } from "react-query"
 interface SpotifyTokenContextProps {
   token: string
   setToken: (string) => void
@@ -22,15 +21,13 @@ type QueryConfig = {
 }
 
 function useClient() {
-  const queryClient = useQueryClient()
-
   let { token } = useSpotifyToken()
 
   return React.useCallback(
     (endpoint, config: QueryConfig | undefined = undefined) => {
-      return client(endpoint, token, queryClient, config)
+      return client(endpoint, token, config)
     },
-    [token, queryClient]
+    [token]
   )
 }
 

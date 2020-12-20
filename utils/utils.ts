@@ -1,9 +1,6 @@
 import { SPOTIFY_BASE_URL } from "app/spotify.config"
-import { QueryClient } from "react-query"
 
-async function client(endpoint: string, token: string, queryClient: QueryClient, data = undefined) {
-  console.log("data = ", data)
-
+async function client(endpoint: string, token: string, data: {} | undefined = undefined) {
   const config = {
     method: data ? "POST" : "GET",
     body: data ? JSON.stringify(data) : undefined,
@@ -11,11 +8,10 @@ async function client(endpoint: string, token: string, queryClient: QueryClient,
       Authorization: `Bearer ${token}`,
     },
   }
-  console.log("config", config)
 
   return window.fetch(`${SPOTIFY_BASE_URL}${endpoint}`, config).then(async (response) => {
     if (response.status === 401) {
-      queryClient.clear()
+      // queryClient.clear() // need to be wrappend in react-query privider but becuase of ssr didnt work
       window.location.assign("/")
       window.localStorage.setItem("spotifyToken", "")
       return Promise.reject({ message: "Please re-authenticate." })
