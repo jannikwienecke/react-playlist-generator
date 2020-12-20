@@ -1,4 +1,4 @@
-import { SPOTIFY_BASE_URL } from "app/spotify.config"
+import { SPOTIFY_BASE_URL } from "app/spotifyConfig"
 
 async function client(endpoint: string, token: string, data: {} | undefined = undefined) {
   const config = {

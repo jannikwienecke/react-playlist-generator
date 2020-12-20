@@ -1,6 +1,5 @@
 import React from "react"
 import { render } from "test/utils"
-import { screen } from "@testing-library/react"
 
 import Home from "./index"
 import { useCurrentUser } from "app/hooks/useCurrentUser"
