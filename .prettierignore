@@ -5,3 +5,5 @@
 db/migrations
 .next
 .blitz
+node_modules/
+app/spotifyAPI/mocks/

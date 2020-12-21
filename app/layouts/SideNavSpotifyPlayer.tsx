@@ -8,7 +8,7 @@ const API_SONG = "Lonely"
 
 interface Props {
   currentSong: string
-  songList: SpotifyApi.ArtistsTopTracksResponse
+  songList: SpotifyApi.ArtistsTopTracksResponse | undefined
 }
 export const SideNavSpotifyPlayer: React.FC<Props> = (props) => {
   const [css] = useStyletron()

@@ -40,7 +40,6 @@ export const Artist = ({ nextTheme, toggleTheme }) => {
           )
         }}
       </ArtistSearch>
-      <SpotifyPlayer />
     </div>
   )
 }

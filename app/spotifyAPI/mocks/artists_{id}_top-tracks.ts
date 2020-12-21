@@ -40,7 +40,7 @@ const results: SpotifyApi.ArtistsTopTracksResponse = {
         name: "Plastic Hearts",
         release_date: "2020-11-27",
         release_date_precision: "day",
-        total_tracks: 15,
+
         type: "album",
         uri: "spotify:album:5BRhg6NSEZOj0BR6Iz56fR",
       },
@@ -127,7 +127,7 @@ const results: SpotifyApi.ArtistsTopTracksResponse = {
         name: "Plastic Hearts",
         release_date: "2020-11-27",
         release_date_precision: "day",
-        total_tracks: 15,
+
         type: "album",
         uri: "spotify:album:5BRhg6NSEZOj0BR6Iz56fR",
       },
@@ -204,7 +204,7 @@ const results: SpotifyApi.ArtistsTopTracksResponse = {
         name: "Plastic Hearts",
         release_date: "2020-11-27",
         release_date_precision: "day",
-        total_tracks: 15,
+
         type: "album",
         uri: "spotify:album:5BRhg6NSEZOj0BR6Iz56fR",
       },
@@ -281,7 +281,7 @@ const results: SpotifyApi.ArtistsTopTracksResponse = {
         name: "Plastic Hearts",
         release_date: "2020-11-27",
         release_date_precision: "day",
-        total_tracks: 15,
+
         type: "album",
         uri: "spotify:album:5BRhg6NSEZOj0BR6Iz56fR",
       },
@@ -358,7 +358,7 @@ const results: SpotifyApi.ArtistsTopTracksResponse = {
         name: "Plastic Hearts",
         release_date: "2020-11-27",
         release_date_precision: "day",
-        total_tracks: 15,
+
         type: "album",
         uri: "spotify:album:5BRhg6NSEZOj0BR6Iz56fR",
       },
@@ -435,7 +435,6 @@ const results: SpotifyApi.ArtistsTopTracksResponse = {
         name: "The Time Of Our Lives",
         release_date: "2009-01-01",
         release_date_precision: "day",
-        total_tracks: 7,
         type: "album",
         uri: "spotify:album:64aKkqxc3Ur2LYIKeS5osS",
       },
@@ -512,7 +511,6 @@ const results: SpotifyApi.ArtistsTopTracksResponse = {
         name: "The Time Of Our Lives",
         release_date: "2009-01-01",
         release_date_precision: "day",
-        total_tracks: 7,
         type: "album",
         uri: "spotify:album:64aKkqxc3Ur2LYIKeS5osS",
       },
@@ -589,7 +587,6 @@ const results: SpotifyApi.ArtistsTopTracksResponse = {
         name: "Bangerz (Deluxe Version)",
         release_date: "2013-10-04",
         release_date_precision: "day",
-        total_tracks: 16,
         type: "album",
         uri: "spotify:album:3RDqXDc1bAETps54MSSOW0",
       },
@@ -666,7 +663,7 @@ const results: SpotifyApi.ArtistsTopTracksResponse = {
         name: "Plastic Hearts",
         release_date: "2020-11-27",
         release_date_precision: "day",
-        total_tracks: 15,
+
         type: "album",
         uri: "spotify:album:5BRhg6NSEZOj0BR6Iz56fR",
       },
@@ -743,7 +740,7 @@ const results: SpotifyApi.ArtistsTopTracksResponse = {
         name: "Plastic Hearts",
         release_date: "2020-11-27",
         release_date_precision: "day",
-        total_tracks: 15,
+
         type: "album",
         uri: "spotify:album:5BRhg6NSEZOj0BR6Iz56fR",
       },

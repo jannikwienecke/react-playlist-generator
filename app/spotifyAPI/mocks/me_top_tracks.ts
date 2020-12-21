@@ -2,7 +2,7 @@ const result: SpotifyApi.UsersTopTracksResponse = {
   items: [
     {
       album: {
-        album_type: "ALBUM",
+        album_type: "album",
         artists: [
           {
             external_urls: {
@@ -41,7 +41,6 @@ const result: SpotifyApi.UsersTopTracksResponse = {
         name: "Her Voice: Season 1 (Apple TV+ Original Series Soundtrack)",
         release_date: "2020-08-21",
         release_date_precision: "day",
-        total_tracks: 14,
         type: "album",
         uri: "spotify:album:3hjTATuELbrldkqcCKSSSF",
       },
@@ -80,7 +79,7 @@ const result: SpotifyApi.UsersTopTracksResponse = {
     },
     {
       album: {
-        album_type: "ALBUM",
+        album_type: "album",
         artists: [
           {
             external_urls: {
@@ -209,7 +208,6 @@ const result: SpotifyApi.UsersTopTracksResponse = {
         name: "A Star Is Born Soundtrack (Without Dialogue)",
         release_date: "2018-10-05",
         release_date_precision: "day",
-        total_tracks: 19,
         type: "album",
         uri: "spotify:album:3edjzMAVB9RYRd4UcZBchx",
       },
@@ -328,7 +326,7 @@ const result: SpotifyApi.UsersTopTracksResponse = {
     },
     {
       album: {
-        album_type: "ALBUM",
+        album_type: "album",
         artists: [
           {
             external_urls: {
@@ -447,7 +445,6 @@ const result: SpotifyApi.UsersTopTracksResponse = {
         name: "NACHT",
         release_date: "2020-09-04",
         release_date_precision: "day",
-        total_tracks: 16,
         type: "album",
         uri: "spotify:album:48ItDmnOpsXg6tJCFZ69BL",
       },
@@ -576,7 +573,7 @@ const result: SpotifyApi.UsersTopTracksResponse = {
     },
     {
       album: {
-        album_type: "SINGLE",
+        album_type: "single",
         artists: [
           {
             external_urls: {
@@ -705,7 +702,6 @@ const result: SpotifyApi.UsersTopTracksResponse = {
         name: "Selfmade Babylon (feat. Bozza)",
         release_date: "2020-06-26",
         release_date_precision: "day",
-        total_tracks: 1,
         type: "album",
         uri: "spotify:album:7elUTrXEn0WEt869oWwA4r",
       },
@@ -834,7 +830,7 @@ const result: SpotifyApi.UsersTopTracksResponse = {
     },
     {
       album: {
-        album_type: "SINGLE",
+        album_type: "single",
         artists: [
           {
             external_urls: {
@@ -963,7 +959,6 @@ const result: SpotifyApi.UsersTopTracksResponse = {
         name: "Lonely (with benny blanco)",
         release_date: "2020-10-16",
         release_date_precision: "day",
-        total_tracks: 1,
         type: "album",
         uri: "spotify:album:3P5WIUJO0Ots1lQx09TOxk",
       },
@@ -1092,7 +1087,7 @@ const result: SpotifyApi.UsersTopTracksResponse = {
     },
     {
       album: {
-        album_type: "SINGLE",
+        album_type: "single",
         artists: [
           {
             external_urls: {
@@ -1211,7 +1206,6 @@ const result: SpotifyApi.UsersTopTracksResponse = {
         name: "Treppenhaus (Akustik)",
         release_date: "2020-05-08",
         release_date_precision: "day",
-        total_tracks: 1,
         type: "album",
         uri: "spotify:album:0klMaorNi4cpn5D9qwh3XU",
       },
@@ -1330,7 +1324,7 @@ const result: SpotifyApi.UsersTopTracksResponse = {
     },
     {
       album: {
-        album_type: "ALBUM",
+        album_type: "album",
         artists: [
           {
             external_urls: {
@@ -1449,7 +1443,6 @@ const result: SpotifyApi.UsersTopTracksResponse = {
         name: "Jibrail & Iblis",
         release_date: "2020-04-16",
         release_date_precision: "day",
-        total_tracks: 22,
         type: "album",
         uri: "spotify:album:5XBjc8TziEGOjSyML5aD9R",
       },
@@ -1568,7 +1561,7 @@ const result: SpotifyApi.UsersTopTracksResponse = {
     },
     {
       album: {
-        album_type: "SINGLE",
+        album_type: "single",
         artists: [
           {
             external_urls: {
@@ -1687,7 +1680,6 @@ const result: SpotifyApi.UsersTopTracksResponse = {
         name: "Wissen wofür",
         release_date: "2020-08-28",
         release_date_precision: "day",
-        total_tracks: 1,
         type: "album",
         uri: "spotify:album:0tjafas1ZnIFreS9LLEphY",
       },
@@ -1806,7 +1798,7 @@ const result: SpotifyApi.UsersTopTracksResponse = {
     },
     {
       album: {
-        album_type: "SINGLE",
+        album_type: "single",
         artists: [
           {
             external_urls: {
@@ -1845,7 +1837,6 @@ const result: SpotifyApi.UsersTopTracksResponse = {
         name: "if this is the last time",
         release_date: "2020-07-01",
         release_date_precision: "day",
-        total_tracks: 1,
         type: "album",
         uri: "spotify:album:3G2RelPzbgYpjSIsi0YS0J",
       },
@@ -1883,7 +1874,7 @@ const result: SpotifyApi.UsersTopTracksResponse = {
     },
     {
       album: {
-        album_type: "SINGLE",
+        album_type: "single",
         artists: [
           {
             external_urls: {
@@ -2002,7 +1993,6 @@ const result: SpotifyApi.UsersTopTracksResponse = {
         name: "Matrix",
         release_date: "2020-02-24",
         release_date_precision: "day",
-        total_tracks: 1,
         type: "album",
         uri: "spotify:album:0sm1vPhUeegBS08TiwBpSC",
       },
@@ -2121,7 +2111,7 @@ const result: SpotifyApi.UsersTopTracksResponse = {
     },
     {
       album: {
-        album_type: "ALBUM",
+        album_type: "album",
         artists: [
           {
             external_urls: {
@@ -2240,7 +2230,6 @@ const result: SpotifyApi.UsersTopTracksResponse = {
         name: "CB7",
         release_date: "2020-09-17",
         release_date_precision: "day",
-        total_tracks: 21,
         type: "album",
         uri: "spotify:album:23EKRPix1b7vUYwPovYle0",
       },
@@ -2359,7 +2348,7 @@ const result: SpotifyApi.UsersTopTracksResponse = {
     },
     {
       album: {
-        album_type: "SINGLE",
+        album_type: "single",
         artists: [
           {
             external_urls: {
@@ -2458,7 +2447,6 @@ const result: SpotifyApi.UsersTopTracksResponse = {
         name: "Bläulich",
         release_date: "2020-07-03",
         release_date_precision: "day",
-        total_tracks: 1,
         type: "album",
         uri: "spotify:album:5VImZL7dJaNGpmjkZry28Y",
       },
@@ -2557,7 +2545,7 @@ const result: SpotifyApi.UsersTopTracksResponse = {
     },
     {
       album: {
-        album_type: "SINGLE",
+        album_type: "single",
         artists: [
           {
             external_urls: {
@@ -2676,7 +2664,6 @@ const result: SpotifyApi.UsersTopTracksResponse = {
         name: "Quite Miss Home (Acoustic)",
         release_date: "2019-12-06",
         release_date_precision: "day",
-        total_tracks: 1,
         type: "album",
         uri: "spotify:album:5ku3gzhWBSkDLlqOczH6wF",
       },
@@ -2795,7 +2782,7 @@ const result: SpotifyApi.UsersTopTracksResponse = {
     },
     {
       album: {
-        album_type: "ALBUM",
+        album_type: "album",
         artists: [
           {
             external_urls: {
@@ -2914,7 +2901,6 @@ const result: SpotifyApi.UsersTopTracksResponse = {
         name: "Jibrail & Iblis",
         release_date: "2020-04-16",
         release_date_precision: "day",
-        total_tracks: 22,
         type: "album",
         uri: "spotify:album:5XBjc8TziEGOjSyML5aD9R",
       },
@@ -3033,7 +3019,7 @@ const result: SpotifyApi.UsersTopTracksResponse = {
     },
     {
       album: {
-        album_type: "SINGLE",
+        album_type: "single",
         artists: [
           {
             external_urls: {
@@ -3152,7 +3138,6 @@ const result: SpotifyApi.UsersTopTracksResponse = {
         name: "Stay Awake (Acoustic)",
         release_date: "2019-05-31",
         release_date_precision: "day",
-        total_tracks: 3,
         type: "album",
         uri: "spotify:album:4PkaHR7pETYGCOB2QocK24",
       },
@@ -3271,7 +3256,7 @@ const result: SpotifyApi.UsersTopTracksResponse = {
     },
     {
       album: {
-        album_type: "SINGLE",
+        album_type: "single",
         artists: [
           {
             external_urls: {
@@ -3400,7 +3385,6 @@ const result: SpotifyApi.UsersTopTracksResponse = {
         name: "Kashira",
         release_date: "2020-06-19",
         release_date_precision: "day",
-        total_tracks: 1,
         type: "album",
         uri: "spotify:album:22inI5ug51EUfuDDPTpx9K",
       },
@@ -3529,7 +3513,7 @@ const result: SpotifyApi.UsersTopTracksResponse = {
     },
     {
       album: {
-        album_type: "SINGLE",
+        album_type: "single",
         artists: [
           {
             external_urls: {
@@ -3648,7 +3632,6 @@ const result: SpotifyApi.UsersTopTracksResponse = {
         name: "I'll Stay",
         release_date: "2020-09-25",
         release_date_precision: "day",
-        total_tracks: 1,
         type: "album",
         uri: "spotify:album:4JbVu74Can6GxKrPSnFp8g",
       },
@@ -3767,7 +3750,7 @@ const result: SpotifyApi.UsersTopTracksResponse = {
     },
     {
       album: {
-        album_type: "ALBUM",
+        album_type: "album",
         artists: [
           {
             external_urls: {
@@ -3886,7 +3869,6 @@ const result: SpotifyApi.UsersTopTracksResponse = {
         name: "Zwischen meinen Zeilen (Deluxe)",
         release_date: "2018-12-07",
         release_date_precision: "day",
-        total_tracks: 21,
         type: "album",
         uri: "spotify:album:3BRzzOrxdksgbL4Iw7dNHd",
       },
@@ -4005,7 +3987,7 @@ const result: SpotifyApi.UsersTopTracksResponse = {
     },
     {
       album: {
-        album_type: "SINGLE",
+        album_type: "single",
         artists: [
           {
             external_urls: {
@@ -4124,7 +4106,6 @@ const result: SpotifyApi.UsersTopTracksResponse = {
         name: "Giants (Guitar)",
         release_date: "2020-07-24",
         release_date_precision: "day",
-        total_tracks: 2,
         type: "album",
         uri: "spotify:album:0MSjhom26Fks1kedwf6ZaW",
       },
@@ -4243,7 +4224,7 @@ const result: SpotifyApi.UsersTopTracksResponse = {
     },
     {
       album: {
-        album_type: "SINGLE",
+        album_type: "single",
         artists: [
           {
             external_urls: {
@@ -4320,7 +4301,6 @@ const result: SpotifyApi.UsersTopTracksResponse = {
         name: "Perfectly Imperfect",
         release_date: "2020-08-14",
         release_date_precision: "day",
-        total_tracks: 1,
         type: "album",
         uri: "spotify:album:72TYaE6b6PDBrm9oFjCbRq",
       },
@@ -4400,7 +4380,6 @@ const result: SpotifyApi.UsersTopTracksResponse = {
   limit: 20,
   offset: 0,
   href: "https://api.spotify.com/v1/me/top/tracks",
-  previous: null,
   next: "https://api.spotify.com/v1/me/top/tracks?limit=20&offset=20",
 }
 
