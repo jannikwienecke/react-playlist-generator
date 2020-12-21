@@ -9,18 +9,16 @@ const Home: BlitzPage = () => {
   }
 
   return (
-    <div className="container">
-      <main>
-        <h1>React - Playlist - Generator</h1>
+    <main>
+      <h1>React - Playlist - Generator</h1>
 
-        <Button onClick={redirectToSpotifyLogin} isLoading={false}>
-          Login Spotify
-        </Button>
-      </main>
-    </div>
+      <Button onClick={redirectToSpotifyLogin} isLoading={false}>
+        Login Spotify
+      </Button>
+    </main>
   )
 }
 
-Home.getLayout = (page) => <Layout title="Home">{page}</Layout>
+Home.getLayout = (page) => <Layout title="  ">{page}</Layout>
 
 export default Home

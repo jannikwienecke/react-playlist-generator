@@ -16,6 +16,9 @@ const Navbar = () => {
       <StyledNavigationList $align={ALIGN.center} />
       <StyledNavigationList $align={ALIGN.right}>
         <StyledNavigationItem>
+          <StyledLink href="/">Home</StyledLink>
+        </StyledNavigationItem>
+        <StyledNavigationItem>
           <StyledLink href="/artist">Artist</StyledLink>
         </StyledNavigationItem>
         <StyledNavigationItem>

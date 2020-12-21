@@ -6,6 +6,10 @@ import { ErrorBoundary } from "react-error-boundary"
 import { useQueryErrorResetBoundary } from "react-query"
 import { ReactQueryDevtools } from "react-query/devtools"
 import Navbar from "./Navbar"
+import ContainerApp from "app/components/ContainerApp"
+import ContentContainer from "app/components/ContentContainer"
+import ContainerSide from "app/components/ContainerSide"
+import { SideNav } from "./SideNav"
 
 type LayoutProps = {
   title?: string
@@ -35,15 +39,18 @@ const Layout = ({ title, children }: LayoutProps) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Navbar />
-      <ErrorBoundary
-        FallbackComponent={RootErrorFallback}
-        resetKeys={[router.asPath]}
-        onReset={reset}
-      >
-        {children}
-        <ReactQueryDevtools initialIsOpen={false} />
-      </ErrorBoundary>
+      <ContainerApp>
+        <ContentContainer>
+          <div>
+            <Navbar />
+          </div>
+          <div>{children}</div>
+        </ContentContainer>
+        <ContainerSide>
+          <SideNav />
+        </ContainerSide>
+      </ContainerApp>
+      <ReactQueryDevtools initialIsOpen={false} />
     </>
   )
 }

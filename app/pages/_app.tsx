@@ -8,11 +8,15 @@ import { Provider as StyletronProvider } from "styletron-react"
 import { styletron } from "../styletron"
 import React from "react"
 import { lightTheme } from "app/customTheme"
+
+import "../styles.css"
+
 const queryClient = new QueryClient()
 
 export default function App({ Component, pageProps }: AppProps) {
   const [theme, setTheme] = React.useState(lightTheme)
   const getLayout = Component.getLayout || ((page) => page)
+  console.log("getLayout", getLayout)
   const router = useRouter()
 
   const toggleTheme = () => {
@@ -21,9 +25,6 @@ export default function App({ Component, pageProps }: AppProps) {
   }
 
   const nextTheme = theme === lightTheme ? "DarkTheme" : "LightTheme"
-
-  console.log(lightTheme.colors.accent100)
-  console.log(theme.colors.accent100)
 
   return (
     <StyletronProvider value={styletron}>
