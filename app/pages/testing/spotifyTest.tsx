@@ -11,8 +11,8 @@ import React from "react"
 
 interface Props {
   initialQuery?: string
-  nextTheme: string
-  toggleTheme: () => void
+  nextTheme?: string
+  toggleTheme?: () => void
 }
 
 const TestPage: BlitzPage<Props> = ({ nextTheme, toggleTheme, initialQuery = "Justin" }) => {
