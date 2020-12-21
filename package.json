@@ -8,8 +8,6 @@
     "lint": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx .",
     "test": "jest",
     "test:watch": "jest --watch",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
     "cypress:open": "cypress open",
     "test:e2e": "start-server-and-test start:cli http://localhost:3000/list cy:open"
   },
@@ -65,11 +63,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
-    "@storybook/addon-actions": "^6.1.11",
-    "@storybook/addon-essentials": "^6.1.11",
-    "@storybook/addon-links": "^6.1.11",
-    "@storybook/preset-typescript": "3.0.0",
-    "@storybook/react": "6.1.11",
     "@testing-library/jest-dom": "5.11.6",
     "@testing-library/react": "11.2.2",
     "@testing-library/react-hooks": "3.7.0",
