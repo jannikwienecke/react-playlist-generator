@@ -13,7 +13,7 @@ const itemProps: BlockProps = {
   justifyContent: "center",
 }
 
-export const Artist = () => {
+export const Artist = ({ nextTheme, toggleTheme }) => {
   return (
     <div>
       <ArtistSearch searchType="artist">
