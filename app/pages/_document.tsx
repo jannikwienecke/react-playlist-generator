@@ -18,13 +18,18 @@ class MyDocument extends Document {
     return { ...page, stylesheets }
   }
 
+  // this props has the property stylesheets.
+  // but ts always complains about it
+  // changing the Document type will reverted by Blitz
+  //thats why I defined the anyprops
+  anyProps: any = this.props
   render() {
     return (
       <Html>
         <Head>
           {this.props &&
-            this.props.stylesheets &&
-            this.props.stylesheets.map((sheet, i) => (
+            this.anyProps.stylesheets &&
+            this.anyProps.stylesheets.map((sheet, i) => (
               <style
                 className="_styletron_hydrate_"
                 dangerouslySetInnerHTML={{ __html: sheet.css }}
