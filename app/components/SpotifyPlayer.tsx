@@ -10,26 +10,27 @@ const SpotifyPlayer: React.FC<{
 }> = ({ height, currentSong, songList }) => {
   const { token } = useSpotifyToken()
   const [play, setPlay] = React.useState(false)
-  const [currentPlaylist, setCurrentPlaylist] = React.useState<string[]>([""])
+  const [currentPlaylist, setCurrentPlaylist] = React.useState<string[] | undefined>(undefined)
 
   //after refactor - no statemangemnt locally but all state is handled over the spotify api
 
   React.useEffect(() => {
     // when setting one song - look up similar songs and add them to the playlist
-
+    if (!currentSong) return
     setCurrentPlaylist([currentSong])
+    setPlay(false)
     setTimeout(() => {
-      setPlay(false)
+      setPlay(true)
     }, 50)
-    setPlay(true)
   }, [currentSong])
 
   React.useEffect(() => {
-    setCurrentPlaylist(songList ? songList.tracks.map((track) => track.uri) : [""])
+    if (!songList) return
+    setCurrentPlaylist(songList.tracks.map((track) => track.uri))
+    setPlay(false)
     setTimeout(() => {
-      setPlay(false)
+      setPlay(true)
     }, 50)
-    setPlay(true)
   }, [songList])
 
   return (

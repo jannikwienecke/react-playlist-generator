@@ -13,7 +13,7 @@ export const ProfileImage = () => {
         display: "flex",
         flexDirection: "column",
         height: "100%",
-        justifyContent: "center",
+        justifyContent: "flex-end",
         textAlign: "center",
       })}
     >
@@ -21,8 +21,8 @@ export const ProfileImage = () => {
         <img
           className={css({
             verticalAlign: "middle",
-            width: "120px",
-            height: "100px",
+            width: "100px",
+            height: "90px",
             borderRadius: "30%",
             boxShadow: "10px 0px 200px 100px rgba(59,40,77,1)",
           })}
@@ -31,7 +31,11 @@ export const ProfileImage = () => {
         />
       </div>
       <div className={css({ textAlign: "center" })}>
-        <HeadingXSmall margin={"20px"} color={theme.colors.white}>
+        <HeadingXSmall
+          $style={{ fontSize: "1.1rem" }}
+          margin={"10px"}
+          color={theme.colors.primary400}
+        >
           Jannik Wienecke
         </HeadingXSmall>
       </div>

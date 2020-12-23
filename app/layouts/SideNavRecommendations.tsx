@@ -73,7 +73,15 @@ export const SideNavSuggestion: React.FC<Props> = ({ setCurrentSong, setSongList
                   <ImageHolder>
                     <Button
                       onClick={() => getTracksByArtist(artist.id)}
-                      $style={{ borderRadius: "20%" }}
+                      $style={{
+                        borderRadius: "30%",
+                        // background: theme.colors.primary600,
+                        background: "rgba(84, 84, 84, 0.4)",
+                        ":hover": {
+                          background: "rgba(84, 84, 84, 0.9)",
+                        },
+                        padding: "6px",
+                      }}
                       size="mini"
                     >
                       <PreviewImage src={artist.images[0].url} alt="preview suggestion" />
@@ -123,8 +131,9 @@ export const SideNavSuggestion: React.FC<Props> = ({ setCurrentSong, setSongList
                 <ImageHolder>
                   <Button
                     onClick={() => playTrack(track.uri)}
-                    $style={{ borderRadius: "20%" }}
+                    $style={{ borderRadius: "30%", backgroundColor: theme.colors.primary700 }}
                     size="mini"
+                    kind="secondary"
                   >
                     <PreviewImage src={track.album.images[0].url} alt="preview suggestion" />
                   </Button>
@@ -165,7 +174,7 @@ export const SideNavHeadingWrapper = styled("div", ({ $theme }) => {
 export const NextSuggestionBox = styled("div", ({ $theme }) => {
   return {
     margin: "20px 5px",
-    width: "33%",
+    width: "30%",
     textAlign: "center",
   }
 })
@@ -180,6 +189,6 @@ export const PreviewImage = styled("img", ({ $theme }) => {
     width: "100%",
     height: "100%",
     borderRadius: "30%",
-    border: "4px solid #30323F",
+    // border: "0px solid #30323F",
   }
 })

@@ -1,7 +1,7 @@
 import { useStyletron } from "baseui"
 import { FlexGrid, FlexGridItem } from "baseui/flex-grid"
 import React from "react"
-import { ProfileImage } from "../components/ProfileImage"
+import { ProfileImage } from "./SideNavProfile"
 import { SideNavSuggestion } from "./SideNavRecommendations"
 import { SideNavSpotifyPlayer } from "./SideNavSpotifyPlayer"
 
