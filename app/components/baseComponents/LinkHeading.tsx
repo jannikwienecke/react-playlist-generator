@@ -3,12 +3,16 @@ import { HeadingXSmall } from "baseui/typography"
 import { Link } from "blitz"
 
 interface HeadingLinkProps {
-  isSelected: boolean
+  isSelected?: boolean
   // children: string
-  href: string
+  href?: string
 }
 
-export const HeadingLink: React.FC<HeadingLinkProps> = ({ href, isSelected = false, children }) => {
+export const HeadingLink: React.FC<HeadingLinkProps> = ({
+  href = "/",
+  isSelected = false,
+  children,
+}) => {
   const [css, theme] = useStyletron()
 
   const stylesSelected = {

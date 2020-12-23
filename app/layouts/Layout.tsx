@@ -9,7 +9,7 @@ import Navbar from "./Navbar"
 import ContainerApp from "app/components/ContainerApp"
 import ContentContainer from "app/components/ContentContainer"
 import ContainerSide from "app/components/ContainerSide"
-import { SideNav } from "./SideNav"
+import { SideNav } from "./Sidebar/SideNav"
 
 type LayoutProps = {
   title?: string
@@ -19,7 +19,6 @@ type LayoutProps = {
 const Layout = ({ title, children }: LayoutProps) => {
   const { token } = useSpotifyToken()
   const router = useRouter()
-  const { reset } = useQueryErrorResetBoundary()
 
   React.useEffect(() => {
     if (token) return
@@ -29,6 +28,8 @@ const Layout = ({ title, children }: LayoutProps) => {
     if (tokenLocalstorage) return
 
     if (pathIndexOrRedirect) return
+
+    console.log("replace")
     router.replace("/")
   })
 
@@ -41,11 +42,10 @@ const Layout = ({ title, children }: LayoutProps) => {
 
       <ContainerApp>
         <ContentContainer>
-          <div>
-            <Navbar />
-          </div>
+          <Navbar />
           <div>{children}</div>
         </ContentContainer>
+
         <ContainerSide>
           <SideNav />
         </ContainerSide>

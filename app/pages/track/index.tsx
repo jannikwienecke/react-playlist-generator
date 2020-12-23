@@ -1,7 +1,6 @@
 import ArtistSearch from "app/components/ArtistSeach"
 import Layout from "app/layouts/Layout"
 import { BlockProps } from "baseui/block"
-import { Button } from "baseui/button"
 import { FlexGrid, FlexGridItem } from "baseui/flex-grid"
 import React from "react"
 

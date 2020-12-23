@@ -10,7 +10,9 @@ const SpotifyPlayer: React.FC<{
 }> = ({ height, currentSong, songList }) => {
   const { token } = useSpotifyToken()
   const [play, setPlay] = React.useState(false)
-  const [currentPlaylist, setCurrentPlaylist] = React.useState<string[] | undefined>(undefined)
+  const [currentPlaylist, setCurrentPlaylist] = React.useState<string[] | undefined>([
+    "spotify:track:4EDeOi1xMFsO7MXMVHbuln",
+  ])
 
   //after refactor - no statemangemnt locally but all state is handled over the spotify api
 
@@ -40,7 +42,6 @@ const SpotifyPlayer: React.FC<{
         uris={currentPlaylist}
         play={play}
         showSaveIcon={true}
-        autoPlay
         styles={{
           activeColor: "#fff",
           bgColor: "transparent",
@@ -51,6 +52,7 @@ const SpotifyPlayer: React.FC<{
           trackNameColor: "transparent",
           height: height,
         }}
+        name="spotifyPlayerPlaylistBuilder"
       />
     </div>
   )

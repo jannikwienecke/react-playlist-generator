@@ -9,7 +9,6 @@ import { Button } from "baseui/button"
 const Navbar = () => {
   const { pathname } = useRouter()
 
-  console.log("pathname", pathname)
   const [css] = useStyletron()
   return (
     <div className={css({ display: "flex", height: "10%" })}>
@@ -49,9 +48,10 @@ const Navbar = () => {
       <div className={css({ display: "flex" })}>
         <StyledNavigationList>
           <StyledNavigationItem>
-            {/* <Button>Get started</Button> */}
-            <HeadingLink isSelected={pathname === "/track"} href="/track">
-              <img src={"/logout.png"} alt="logout button" height="40px" width="40px" />
+            <HeadingLink>
+              <Button kind="tertiary" shape="circle">
+                <img src={"/logout.svg"} alt="logout button" height="40px" width="40px" />
+              </Button>
             </HeadingLink>
           </StyledNavigationItem>
         </StyledNavigationList>

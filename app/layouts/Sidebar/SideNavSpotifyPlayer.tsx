@@ -10,7 +10,7 @@ interface Props {
   currentSong: string
   songList: SpotifyApi.ArtistsTopTracksResponse | undefined
 }
-export const SideNavSpotifyPlayer: React.FC<Props> = (props) => {
+const Player: React.FC<Props> = (props) => {
   const [css] = useStyletron()
   return (
     <div
@@ -35,3 +35,5 @@ export const SideNavSpotifyPlayer: React.FC<Props> = (props) => {
     </div>
   )
 }
+
+export default Player

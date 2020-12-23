@@ -8,10 +8,9 @@ import _ from "lodash"
 import React from "react"
 
 interface Props {
-  setCurrentSong: (currentSong: string) => void
-  setSongList: (songList: SpotifyApi.ArtistsTopTracksResponse) => void
+  play: (uris: string[]) => void
 }
-export const SideNavSuggestion: React.FC<Props> = ({ setCurrentSong, setSongList }) => {
+export const SideNavSuggestion: React.FC<Props> = ({ play }) => {
   const [css, theme] = useStyletron()
   const [nextTracks, setNextTracks] = React.useState<typeof top_tracks.items>()
 
@@ -21,11 +20,11 @@ export const SideNavSuggestion: React.FC<Props> = ({ setCurrentSong, setSongList
   }
 
   const getTracksByArtist = (artist_id) => {
-    setSongList(artistSongList)
+    play(artistSongList.tracks.map((track) => track.uri))
   }
 
   const playTrack = (track) => {
-    setCurrentSong(track)
+    play([track])
   }
 
   React.useEffect(() => {
@@ -139,7 +138,9 @@ export const SideNavSuggestion: React.FC<Props> = ({ setCurrentSong, setSongList
                   </Button>
                 </ImageHolder>
                 <PreviewText>
-                  {track.name} - {track.artists[0].name}{" "}
+                  {`${track.name}-${track.artists[0].name}`.length < 40
+                    ? `${track.name}-${track.artists[0].name}`
+                    : `${track.name}-${track.artists[0].name}`.slice(0, 40) + "..."}
                 </PreviewText>
               </NextSuggestionBox>
             )

@@ -1,5 +1,5 @@
 import LoginForm from "app/auth/components/LoginForm"
-import { AppProvider } from "app/context/AppProvider"
+import { AppProvider, useSpotifyToken } from "app/context/AppProvider"
 import { BaseProvider, LightTheme, DarkTheme } from "baseui"
 import { AppProps, AuthenticationError, AuthorizationError, ErrorComponent, useRouter } from "blitz"
 import { ErrorBoundary, FallbackProps } from "react-error-boundary"
@@ -11,12 +11,11 @@ import { lightTheme } from "app/customTheme"
 
 import "../styles.css"
 
-const queryClient = new QueryClient()
+export const queryClient = new QueryClient()
 
 export default function App({ Component, pageProps }: AppProps) {
   const [theme, setTheme] = React.useState(lightTheme)
   const getLayout = Component.getLayout || ((page) => page)
-  console.log("getLayout", getLayout)
   const router = useRouter()
 
   const toggleTheme = () => {
