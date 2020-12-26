@@ -1,6 +1,7 @@
 const authEndpoint = "https://accounts.spotify.com/authorize"
 const clientId = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT
-export const redirectUri = "http://localhost:3000/redirect"
+export const redirectUri = process.env.NEXT_PUBLIC_SPOTIFY_REDIRECT_URL
+// export const redirectUri = "http://localhost:3000/redirect"
 const scopes = [
   "user-top-read",
   "user-read-currently-playing",
