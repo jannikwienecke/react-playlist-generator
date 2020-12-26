@@ -1,5 +1,6 @@
 // import { useArtistsTopTracks } from "app/hooks/useAritstsTopTracks"
 import { useArtistsTracks } from "app/hooks/useArtistsSongs"
+import { useCurrentSong } from "app/hooks/useCurrentSong"
 import { usePlay } from "app/hooks/usePlay"
 import { useTopArtistsTracks } from "app/hooks/useTopArtistsTracks"
 import _ from "lodash"
@@ -12,6 +13,7 @@ export const useRecommendations = () => {
   const { topArtists, topTracks } = useTopArtistsTracks()
   const { artistsTracks } = useArtistsTracks({ artistId, limit: 50 })
   const { play } = usePlay()
+  const { refetch: refetchCurrentSong } = useCurrentSong()
 
   React.useEffect(() => {
     store.setState("track", _.shuffle(topTracks?.items))
@@ -25,26 +27,53 @@ export const useRecommendations = () => {
   //   if (artistsTopTracks) play(artistsTopTracks.map((track) => track.uri))
   // }, [artistsTopTracks, play])
 
+  // after a new so
+  const playWrapper = React.useCallback(
+    (uris: string[]) => {
+      play(uris)
+      let intervall = setInterval(() => {
+        refetchCurrentSong()
+      }, 100)
+
+      setTimeout(() => {
+        clearInterval(intervall)
+      }, 1000)
+    },
+    [play, refetchCurrentSong]
+  )
+
   React.useEffect(() => {
     if (artistsTracks) {
-      play(_.shuffle(artistsTracks.slice(0, 100).map((track) => track.uri)))
+      const selectedArtistsTracks = _.shuffle(artistsTracks.slice(0, 100))
+      playWrapper(selectedArtistsTracks.map((track) => track.uri))
     }
-  }, [artistsTracks, play])
+  }, [artistsTracks, playWrapper])
 
-  const playArtistSongs = (artistId_: string) => {
-    // SET ARTIST ID TO "_" - allows for refetching the artistssongs everytime the user
-    // clicks on the artist button
-    if (artistId) setArtistId("_")
-    setTimeout(() => {
-      setArtistId(artistId_)
-    }, 50)
-  }
+  const playArtistSongs = React.useCallback(
+    (artistId_: string) => {
+      // SET ARTIST ID TO "_" - allows for refetching the artistssongs everytime the user
+      // clicks on the artist button
+      if (artistId) setArtistId("_")
+      setTimeout(() => {
+        setArtistId(artistId_)
+      }, 30)
+    },
+    [artistId]
+  )
+
+  const playSong = React.useCallback(
+    (uri: string) => {
+      playWrapper([uri])
+    },
+    [playWrapper]
+  )
 
   return {
     topArtists,
     topTracks,
     // artistsTopTracks,
     playArtistSongs,
+    playSong,
     store,
   }
 }

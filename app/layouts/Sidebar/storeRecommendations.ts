@@ -5,7 +5,7 @@ import produce, { Draft } from "immer"
 
 const ARTIST = "artist"
 const TRACK = "track"
-type KindProp = typeof ARTIST | typeof TRACK
+export type KindProp = typeof ARTIST | typeof TRACK
 
 export type TrackType = SpotifyApi.TrackObjectFull[] | undefined
 export type ArtistType = SpotifyApi.ArtistObjectFull[] | undefined

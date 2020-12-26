@@ -33,7 +33,8 @@ export const usePlay = () => {
   )
 
   React.useEffect(() => {
-    if (error && error?.error?.reason === "UNKNOWN") {
+    let err: any = error
+    if (err && err?.error?.reason === "UNKNOWN") {
       mutate(uris)
     }
   }, [error])

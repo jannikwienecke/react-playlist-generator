@@ -30,5 +30,7 @@ export const useArtistsTracks = (
     }
   }, [artistsAlbums, fetchAlbumTracks])
 
+  React.useEffect(() => {}, [artistId])
+
   return { artistsTracks }
 }

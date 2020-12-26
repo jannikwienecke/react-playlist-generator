@@ -5,6 +5,7 @@ import { dynamic } from "blitz"
 import React from "react"
 import SpotifyWebPlayer from "react-spotify-web-playback"
 import _ from "lodash"
+import { useCurrentSong } from "../hooks/useCurrentSong"
 const SpotifyPlayer: React.FC<{
   height: string
   defaultTrackList: TrackPagingObject | undefined

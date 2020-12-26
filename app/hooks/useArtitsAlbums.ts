@@ -16,13 +16,19 @@ export const useArtistsAlbums = (
   const { refetch, ...result } = useSpotify<albumType>({ url, enabled: false })
 
   React.useEffect(() => {
-    if (artistId) setCurrentArtistId(artistId)
+    console.log("artistId in album == ", artistId)
+
+    if (artistId) {
+      setCurrentArtistId(artistId)
+    }
   }, [artistId])
 
   React.useEffect(() => {
     // ignore id of "_" - id is set to "_"
     //so that  when the user clicks on an artist - new songs are loaded from the artist
     if (currentArtistId && currentArtistId !== "_") {
+      console.log("refetch.........")
+
       refetch()
     }
   }, [currentArtistId, refetch])
