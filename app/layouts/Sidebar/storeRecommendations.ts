@@ -1,5 +1,7 @@
-// import { useArtistsTopTracks } from "app/hooks/useAritstsTopTracks"
+// import { useArtistsTopTracks } from "app/hooks/useAritstsTopTracks
 import create from "zustand"
+import { State, StateCreator } from "zustand"
+import produce, { Draft } from "immer"
 
 const ARTIST = "artist"
 const TRACK = "track"
@@ -21,18 +23,17 @@ export type StateRecommendationStore = {
   state: { [ARTIST]: ArtistType; [TRACK]: TrackType }
 }
 
-export const useStore = create<StateRecommendationStore>((set) => ({
-  index: { artist: 0, track: 0 },
-  state: { artist: undefined, track: undefined },
-  increaseIndex: (by: KindProp) =>
-    set((state) => ({ ...state, index: { ...state.index, [by]: state.index[by] + 1 } })),
-  setState: (by, value) => {
-    set((state_) => ({
-      ...state_,
-      state: {
-        ...state_.state,
-        [by]: value,
-      },
-    }))
-  },
-}))
+const immer = <T extends State>(
+  config: StateCreator<T, (fn: (draft: Draft<T>) => void) => void>
+): StateCreator<T> => (set, get, api) =>
+  config((fn) => set(produce(fn) as (state: T) => T), get, api)
+
+export const useStore = create<StateRecommendationStore>(
+  immer((set) => ({
+    index: { artist: 0, track: 0 },
+    state: { artist: undefined, track: undefined },
+    increaseIndex: (by) => set((state) => void (state.index[by] += 1)),
+    setState: <T>(by, value: InputValueSetState<T>) =>
+      set((state) => void (state.state[by] = value)),
+  }))
+)
