@@ -2,15 +2,12 @@ import { useStyletron } from "baseui"
 import React from "react"
 import SpotifyPlayer from "app/components/SpotifyPlayer"
 import { HeadingXSmall } from "baseui/typography"
+import { TrackPagingObject } from "app/hooks/useTopArtistsTracks"
 
 const API_ARTIST = "Justin Bieber"
 const API_SONG = "Lonely"
 
-interface Props {
-  currentSong: string
-  songList: SpotifyApi.ArtistsTopTracksResponse | undefined
-}
-const Player: React.FC<Props> = (props) => {
+const Player: React.FC<{ defaultTrackList: TrackPagingObject }> = (props) => {
   const [css] = useStyletron()
   return (
     <div

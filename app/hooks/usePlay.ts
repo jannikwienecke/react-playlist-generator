@@ -1,21 +1,42 @@
+import { SPOTIFY_PLAYER_NAME } from "app/spotifyConfig"
+import { useDevices } from "./useDevices"
 import { useSpotifyMutation } from "./useSpotify"
-
-// const useDeviceId = () => {
-//   const url = "me/player/devices"
-//   type devicesType = SpotifyApi.UserDevice
-
-//   const result = useSpotify<devicesType>({ url })
-
-//   return result
-// }
+import React from "react"
+import _ from "lodash"
+import { TrackPagingObject } from "./useTopArtistsTracks"
 
 export const usePlay = () => {
-  const url = "me/player/play?device_id=20b54f69b425b515ea9f4a49075088ce6f69e5eb"
-  const result = useSpotifyMutation<null>({ url, method: "PUT" })
+  const resultDevices = useDevices()
+  const [deviceId, setDeviceId] = React.useState<string | undefined>()
+  const [uris, setUris] = React.useState<string[] | undefined>()
 
-  const play = (uris: string[]) => {
-    result.mutate({ uris })
-  }
+  const url = `me/player/play?device_id=${deviceId}`
+  const { mutate, error, ...result } = useSpotifyMutation<null>({ url, method: "PUT" })
+
+  React.useEffect(() => {
+    if (deviceId && uris) {
+      mutate({ uris })
+    }
+  }, [deviceId, mutate, uris])
+
+  const play = React.useCallback(
+    (uris: string[]) => {
+      const resultDeviceId = resultDevices.data?.devices.find(
+        (device) => device.name === SPOTIFY_PLAYER_NAME
+      )
+
+      setDeviceId(resultDeviceId && resultDeviceId.id ? resultDeviceId.id : undefined)
+
+      setUris(uris)
+    },
+    [resultDevices.data?.devices]
+  )
+
+  React.useEffect(() => {
+    if (error && error?.error?.reason === "UNKNOWN") {
+      mutate(uris)
+    }
+  }, [error])
 
   return { ...result, play }
 }

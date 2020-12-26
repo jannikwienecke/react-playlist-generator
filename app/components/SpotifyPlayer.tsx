@@ -1,45 +1,35 @@
 import { useSpotifyToken } from "app/context/AppProvider"
+import { TrackPagingObject } from "app/hooks/useTopArtistsTracks"
+import { SPOTIFY_PLAYER_NAME } from "app/spotifyConfig"
 import { dynamic } from "blitz"
 import React from "react"
 import SpotifyWebPlayer from "react-spotify-web-playback"
-
+import _ from "lodash"
 const SpotifyPlayer: React.FC<{
   height: string
-  currentSong: string
-  songList: SpotifyApi.ArtistsTopTracksResponse | undefined
-}> = ({ height, currentSong, songList }) => {
+  defaultTrackList: TrackPagingObject | undefined
+}> = ({ height, defaultTrackList }) => {
   const { token } = useSpotifyToken()
   const [play, setPlay] = React.useState(false)
-  const [currentPlaylist, setCurrentPlaylist] = React.useState<string[] | undefined>([
-    "spotify:track:4EDeOi1xMFsO7MXMVHbuln",
-  ])
-
-  //after refactor - no statemangemnt locally but all state is handled over the spotify api
+  const [trackList, setTrackList] = React.useState<string[] | undefined>(undefined)
 
   React.useEffect(() => {
-    // when setting one song - look up similar songs and add them to the playlist
-    if (!currentSong) return
-    setCurrentPlaylist([currentSong])
-    setPlay(false)
+    setPlay(true)
     setTimeout(() => {
-      setPlay(true)
-    }, 50)
-  }, [currentSong])
+      setPlay(false)
+    }, 500)
+  }, [])
 
   React.useEffect(() => {
-    if (!songList) return
-    setCurrentPlaylist(songList.tracks.map((track) => track.uri))
-    setPlay(false)
-    setTimeout(() => {
-      setPlay(true)
-    }, 50)
-  }, [songList])
+    const shuffledUris = _.shuffle(defaultTrackList?.items.map((track) => track.uri))
+    setTrackList(shuffledUris)
+  }, [defaultTrackList])
 
   return (
     <div>
       <SpotifyWebPlayer
         token={token}
-        uris={currentPlaylist}
+        uris={trackList}
         play={play}
         showSaveIcon={true}
         styles={{
@@ -52,7 +42,7 @@ const SpotifyPlayer: React.FC<{
           trackNameColor: "transparent",
           height: height,
         }}
-        name="spotifyPlayerPlaylistBuilder"
+        name={SPOTIFY_PLAYER_NAME}
       />
     </div>
   )

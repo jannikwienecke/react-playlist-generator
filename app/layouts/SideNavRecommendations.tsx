@@ -1,36 +1,24 @@
-import artistSongList from "app/spotifyAPI/mocks/artists_{id}_top-tracks"
-import top_artists from "app/spotifyAPI/mocks/me_top_artists"
-import top_tracks from "app/spotifyAPI/mocks/me_top_tracks"
 import { styled, useStyletron } from "baseui"
 import { Button } from "baseui/button"
 import { ArrowRight } from "baseui/icon"
-import _ from "lodash"
 import React from "react"
+import { StateRecommendationStore } from "./Sidebar/storeRecommendations"
 
 interface Props {
   play: (uris: string[]) => void
+  topArtists: SpotifyApi.PagingObject<SpotifyApi.ArtistObjectFull> | undefined
+  topTracks: SpotifyApi.PagingObject<SpotifyApi.TrackObjectFull> | undefined
+  playArtistSongs: (string) => void
+  recommendationStore: StateRecommendationStore
 }
-export const SideNavSuggestion: React.FC<Props> = ({ play }) => {
+export const SideNavSuggestion: React.FC<Props> = ({
+  play,
+  playArtistSongs,
+  topTracks,
+  topArtists,
+  recommendationStore: { increaseIndex, setState, state: store, index },
+}) => {
   const [css, theme] = useStyletron()
-  const [nextTracks, setNextTracks] = React.useState<typeof top_tracks.items>()
-
-  const shuffleAndSetNextTracks = () => {
-    const threeRandomSongs = _.shuffle(top_tracks.items).slice(0, 3)
-    setNextTracks(threeRandomSongs)
-  }
-
-  const getTracksByArtist = (artist_id) => {
-    play(artistSongList.tracks.map((track) => track.uri))
-  }
-
-  const playTrack = (track) => {
-    play([track])
-  }
-
-  React.useEffect(() => {
-    shuffleAndSetNextTracks()
-  }, [])
-
   return (
     <div>
       <div>
@@ -53,7 +41,7 @@ export const SideNavSuggestion: React.FC<Props> = ({ play }) => {
               Recommendations Top Artists
             </div>
             <Button
-              onClick={shuffleAndSetNextTracks}
+              onClick={() => increaseIndex("artist")}
               $style={{ marginLeft: "10px" }}
               kind="secondary"
               size="mini"
@@ -64,32 +52,29 @@ export const SideNavSuggestion: React.FC<Props> = ({ play }) => {
           </div>
         </SideNavHeadingWrapper>
         <PreviewHolder>
-          {_.shuffle(top_artists.items)
-            .slice(0, 3)
-            .map((artist) => {
-              return (
-                <NextSuggestionBox key={artist.id}>
-                  <ImageHolder>
-                    <Button
-                      onClick={() => getTracksByArtist(artist.id)}
-                      $style={{
-                        borderRadius: "30%",
-                        // background: theme.colors.primary600,
-                        background: "rgba(84, 84, 84, 0.4)",
-                        ":hover": {
-                          background: "rgba(84, 84, 84, 0.9)",
-                        },
-                        padding: "6px",
-                      }}
-                      size="mini"
-                    >
-                      <PreviewImage src={artist.images[0].url} alt="preview suggestion" />
-                    </Button>
-                  </ImageHolder>
-                  <PreviewText>{artist.name}</PreviewText>
-                </NextSuggestionBox>
-              )
-            })}
+          {store.artist?.slice(index.artist, index.artist + 3).map((artist) => {
+            return (
+              <NextSuggestionBox key={artist.id}>
+                <ImageHolder>
+                  <Button
+                    onClick={() => playArtistSongs(artist.id)}
+                    $style={{
+                      borderRadius: "30%",
+                      background: "rgba(84, 84, 84, 0.4)",
+                      ":hover": {
+                        background: "rgba(84, 84, 84, 0.9)",
+                      },
+                      padding: "6px",
+                    }}
+                    size="mini"
+                  >
+                    <PreviewImage src={artist.images[0].url} alt="preview suggestion" />
+                  </Button>
+                </ImageHolder>
+                <PreviewText>{artist.name}</PreviewText>
+              </NextSuggestionBox>
+            )
+          })}
         </PreviewHolder>
       </div>
 
@@ -113,7 +98,7 @@ export const SideNavSuggestion: React.FC<Props> = ({ play }) => {
               Recommendations Top Tracks
             </div>
             <Button
-              onClick={shuffleAndSetNextTracks}
+              onClick={() => increaseIndex("track")}
               $style={{ marginLeft: "10px" }}
               kind="secondary"
               size="mini"
@@ -124,23 +109,26 @@ export const SideNavSuggestion: React.FC<Props> = ({ play }) => {
           </div>
         </SideNavHeadingWrapper>
         <PreviewHolder>
-          {nextTracks?.map((track) => {
+          {store.track?.slice(index.track, index.track + 3).map((track) => {
             return (
               <NextSuggestionBox key={track.id}>
                 <ImageHolder>
                   <Button
-                    onClick={() => playTrack(track.uri)}
+                    onClick={() => play([track.uri])}
                     $style={{ borderRadius: "30%", backgroundColor: theme.colors.primary700 }}
                     size="mini"
                     kind="secondary"
                   >
-                    <PreviewImage src={track.album.images[0].url} alt="preview suggestion" />
+                    <PreviewImage
+                      src={track.album.images.length > 0 ? track.album.images[0].url : "/logo.png"}
+                      alt="preview suggestion"
+                    />
                   </Button>
                 </ImageHolder>
                 <PreviewText>
                   {`${track.name}-${track.artists[0].name}`.length < 40
                     ? `${track.name}-${track.artists[0].name}`
-                    : `${track.name}-${track.artists[0].name}`.slice(0, 40) + "..."}
+                    : `${track.name}-${track.artists[0].name}`.slice(0, 35) + "..."}
                 </PreviewText>
               </NextSuggestionBox>
             )
@@ -154,8 +142,11 @@ export const SideNavSuggestion: React.FC<Props> = ({ play }) => {
 export const PreviewText = styled("p", ({ $theme }) => {
   return {
     fontSize: "0.9rem",
+    height: "40px",
   }
 })
+
+PreviewText.displayName = "PreviewText"
 
 export const PreviewHolder = styled("div", ({ $theme }) => {
   return {

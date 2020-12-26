@@ -1,6 +1,6 @@
 const authEndpoint = "https://accounts.spotify.com/authorize"
 const clientId = process.env.NEXT_PUBLIC_SPOTIFY_CLIENT
-export const redirectUri = "http://localhost:3002/redirect"
+export const redirectUri = "http://localhost:3000/redirect"
 const scopes = [
   "user-top-read",
   "user-read-currently-playing",
@@ -39,9 +39,10 @@ const SPOTIFY_BASE_URL = "https://api.spotify.com/v1/"
 
 const SPOTIFY_TOKEN_URL = "https://accounts.spotify.com/api/token"
 
-const COUNTRY_CODE = "ISO 3166-2:US"
+const COUNTRY_CODE = "US"
 
-export { SPOTIFY_AUTH_URL, SPOTIFY_BASE_URL, COUNTRY_CODE, SPOTIFY_TOKEN_URL }
+const SPOTIFY_PLAYER_NAME = "player_playlist_design"
+export { SPOTIFY_PLAYER_NAME, SPOTIFY_AUTH_URL, SPOTIFY_BASE_URL, COUNTRY_CODE, SPOTIFY_TOKEN_URL }
 
 export interface URL_PARAMETER_REDIRECT {
   access_token: string

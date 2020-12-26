@@ -14,7 +14,7 @@ async function client({ endpoint, token, data = undefined, method = "GET" }: Pro
     method,
     body: data ? JSON.stringify(data) : undefined,
     headers: {
-      Authorization: `Bearer 1${token}`,
+      Authorization: `Bearer ${token}`,
     },
   }
 
@@ -26,7 +26,14 @@ async function client({ endpoint, token, data = undefined, method = "GET" }: Pro
       return Promise.reject({ message: "Please re-authenticate." })
     }
 
-    const data = await response.json()
+    let data: any
+
+    try {
+      data = await response.json()
+    } catch (error) {
+      Promise.resolve()
+    }
+
     if (response.ok) {
       return data
     } else {

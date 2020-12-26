@@ -1,30 +1,36 @@
 import { usePlay } from "app/hooks/usePlay"
-import { useStyletron } from "baseui"
 import React from "react"
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton"
 import { SideNavSuggestion } from "../SideNavRecommendations"
 import ProfileImage from "./ProfileImage"
 import { SideNavLayout } from "./SideNavLayout"
 import SpotifyPlayer from "./SideNavSpotifyPlayer"
 import { SideSkeleton } from "./SideSkeleton"
 import useProfileImage from "./useProfileImage"
+import { useRecommendations } from "./useRecommendations"
 
-const Wrapper = ({ children }) => {
-  const [css] = useStyletron()
-  return <div className={css({ textAlign: "center", margin: "10px" })}>={children}</div>
-}
 export const SideNav = () => {
   const { profileName, profileImageUrl } = useProfileImage()
-  const { play, data } = usePlay()
-  // const {} = useRecommendations()
-  // const {} = useSpotiifyPlayer()
+  const {
+    topArtists,
+    topTracks,
+    playArtistSongs,
+    store: recommendationStore,
+  } = useRecommendations()
+  const { play } = usePlay()
 
-  if (!profileImageUrl) return <SideSkeleton />
+  if (!profileImageUrl || !topTracks || !topArtists) return <SideSkeleton />
+
   return (
     <SideNavLayout>
       <ProfileImage profileImageUrl={profileImageUrl} profileName={profileName} />
-      <SideNavSuggestion play={play} />
-      <SpotifyPlayer currentSong="" songList={undefined} />
+      <SideNavSuggestion
+        play={play}
+        topTracks={topTracks}
+        topArtists={topArtists}
+        playArtistSongs={playArtistSongs}
+        recommendationStore={recommendationStore}
+      />
+      <SpotifyPlayer defaultTrackList={topTracks} />
     </SideNavLayout>
   )
 }

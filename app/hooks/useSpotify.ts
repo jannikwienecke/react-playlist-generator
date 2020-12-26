@@ -8,15 +8,17 @@ interface PropsSpotifyParameter {
   url: string
   data?: {} | undefined
   method?: "GET" | "POST" | "PUT"
+  enabled?: boolean
 }
 
-export const useSpotify = <T>({ url, data, method }: PropsSpotifyParameter) => {
+export const useSpotify = <T>({ url, data, method, enabled = true }: PropsSpotifyParameter) => {
   const { token } = useSpotifyToken()
   const result = useQuery(
     [url, token?.slice(0, 20)],
     (): Promise<T> => {
       return client({ endpoint: url, token, data, method }).then((res: Promise<T>) => res)
-    }
+    },
+    { enabled }
   )
   return { ...result }
 }

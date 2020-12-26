@@ -32,14 +32,20 @@ export function useSearch<T>({
   const [hitAPI, setHitApi] = React.useState(false)
   const client = useClient()
 
-  const { data, refetch } = useQuery(["search", { query }], () => {
-    const url = `search?query=${initialQuery && !hitAPI ? initialQuery : query}&type=${searchType}`
-    setHitApi(true)
+  const { data, refetch } = useQuery(
+    ["search", { query }],
+    () => {
+      const url = `search?query=${
+        initialQuery && !hitAPI ? initialQuery : query
+      }&type=${searchType}`
+      setHitApi(true)
 
-    return client(url).then((data) => {
-      return data
-    })
-  })
+      return client(url).then((data) => {
+        return data
+      })
+    },
+    { enabled: false }
+  )
 
   React.useEffect(() => {
     refetch()
