@@ -44,8 +44,12 @@ export const useRecommendations = () => {
 
   React.useEffect(() => {
     if (artistsTracks) {
+      console.log("artistsTracks", artistsTracks)
       const selectedArtistsTracks = _.shuffle(artistsTracks.slice(0, 100))
-      playWrapper(selectedArtistsTracks.map((track) => track.uri))
+      console.log("selectedArtistsTracks", selectedArtistsTracks)
+      const uris = selectedArtistsTracks.map((track) => track.uri)
+      console.log("uris", uris)
+      playWrapper(uris)
     }
   }, [artistsTracks, playWrapper])
 
