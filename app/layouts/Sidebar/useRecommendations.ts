@@ -43,7 +43,7 @@ export const useRecommendations = () => {
   )
 
   React.useEffect(() => {
-    if (artistsTracks) {
+    if (artistsTracks && artistsTracks?.length > 0) {
       console.log("artistsTracks", artistsTracks)
       const selectedArtistsTracks = _.shuffle(artistsTracks.slice(0, 100))
       console.log("selectedArtistsTracks", selectedArtistsTracks)

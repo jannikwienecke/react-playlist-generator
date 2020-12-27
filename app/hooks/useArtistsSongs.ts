@@ -19,7 +19,10 @@ export const useArtistsTracks = (
     setartistsTracks(undefined)
     const albumIds = artistsAlbums?.items.map((album) => album.id)
     if (albumIds) {
+      console.log("albumIds", albumIds)
       const tracks = await fetchTracks(albumIds)
+      console.log("tracks", tracks)
+
       setartistsTracks(tracks)
     }
   }, [artistsAlbums, fetchTracks])

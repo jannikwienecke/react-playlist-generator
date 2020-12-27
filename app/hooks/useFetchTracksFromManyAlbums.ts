@@ -16,6 +16,8 @@ export const useFetchTracksFromManyAlbums = (options?: PropsFetchTracksFromManyA
         tracks.push(...album.items)
       })
 
+      console.log("return tracks...", tracks)
+
       return tracks
     },
     [client, options]
