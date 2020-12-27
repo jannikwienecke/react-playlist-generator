@@ -10,9 +10,16 @@ export const useFetchTracksFromManyAlbums = (options?: PropsFetchTracksFromManyA
   const fetch = React.useCallback(
     async (albumIds: string[]) => {
       let tracks: SpotifyApi.TrackObjectSimplified[] = []
+      console.log("albumIds === ", albumIds)
+
       albumIds.forEach(async (albumId) => {
+        console.log("albumId:", albumId)
+
         const url = `albums/${albumId}/tracks?limit=${options?.limit || 50}`
         const album: SpotifyApi.PagingObject<SpotifyApi.TrackObjectSimplified> = await client(url)
+        console.log("return album = ", album)
+        console.log("push items", album.items.length)
+
         tracks.push(...album.items)
       })
 
