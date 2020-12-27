@@ -10,15 +10,7 @@ const SpotifyPlayer: React.FC<{
   defaultTrackList: TrackPagingObject | undefined
 }> = ({ height, defaultTrackList }) => {
   const { token } = useSpotifyToken()
-  const [play, setPlay] = React.useState(false)
   const [trackList, setTrackList] = React.useState<string[] | undefined>(undefined)
-
-  React.useEffect(() => {
-    setPlay(true)
-    setTimeout(() => {
-      setPlay(false)
-    }, 500)
-  }, [])
 
   React.useEffect(() => {
     const shuffledUris = _.shuffle(defaultTrackList?.items.map((track) => track.uri))
@@ -30,7 +22,7 @@ const SpotifyPlayer: React.FC<{
       <SpotifyWebPlayer
         token={token}
         uris={trackList}
-        play={play}
+        play={false}
         showSaveIcon={true}
         styles={{
           activeColor: "#fff",

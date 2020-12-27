@@ -57,7 +57,7 @@ export const SideNavSuggestion: React.FC<Props> = ({
 
       <PreviewHolder>
         {store.artist?.slice(index.artist, index.artist + 10).map((artist, index) => {
-          console.log("artist - 1", artist)
+          console.log("artist", artist)
           return (
             <motion.div
               className={css({ margin: "20px 5px", width: "30%", textAlign: "center" })}
@@ -105,6 +105,7 @@ export const SideNavSuggestion: React.FC<Props> = ({
 
       <PreviewHolder>
         {store.track?.slice(index.track, index.track + 10).map((track, index) => {
+          console.log("track", track)
           return (
             <motion.div
               className={css({ margin: "20px 5px", width: "30%", textAlign: "center" })}
