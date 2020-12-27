@@ -6,13 +6,13 @@ interface PropsFetchTracksFromManyAlbums {
 
 export const useFetchTracksFromManyAlbums = (options?: PropsFetchTracksFromManyAlbums) => {
   const client = useClient()
+  const [tracks, setTracks] = React.useState<SpotifyApi.TrackObjectSimplified[]>([])
 
   const fetch = React.useCallback(
     async (albumIds: string[]) => {
-      let tracks: SpotifyApi.TrackObjectSimplified[] = []
       console.log("albumIds === ", albumIds)
 
-      await albumIds.forEach(async (albumId) => {
+      const tracksPromise = await albumIds.map(async (albumId) => {
         console.log("albumId:", albumId)
 
         const url = `albums/${albumId}/tracks?limit=${options?.limit || 50}`
@@ -20,15 +20,11 @@ export const useFetchTracksFromManyAlbums = (options?: PropsFetchTracksFromManyA
         console.log("return album = ", album)
         console.log("push items", album.items.length)
 
-        tracks.push(...album.items)
+        setTracks([...tracks, ...album.items])
       })
-
-      console.log("return tracks...", tracks)
-
-      return tracks
     },
     [client, options]
   )
 
-  return fetch
+  return { fetch, tracks }
 }

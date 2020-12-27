@@ -11,16 +11,18 @@ export const useRecommendations = () => {
   const store = useStore(React.useCallback((state) => state, []))
   const [artistId, setArtistId] = React.useState<string | undefined>()
   const { topArtists, topTracks } = useTopArtistsTracks()
-  const { artistsTracks } = useArtistsTracks({ artistId, limit: 50 })
+  const { tracks: artistsTracks } = useArtistsTracks({ artistId, limit: 50 })
   const { play } = usePlay()
   const { refetch: refetchCurrentSong } = useCurrentSong()
 
   React.useEffect(() => {
     store.setState("track", _.shuffle(topTracks?.items))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [topTracks])
 
   React.useEffect(() => {
     store.setState("artist", _.shuffle(topArtists?.items))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [topArtists])
 
   // React.useEffect(() => {

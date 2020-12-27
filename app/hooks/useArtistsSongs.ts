@@ -1,4 +1,3 @@
-import { useSpotify } from "./useSpotify"
 import React from "react"
 import { useArtistsAlbums } from "./useArtitsAlbums"
 import { useFetchTracksFromManyAlbums } from "./useFetchTracksFromManyAlbums"
@@ -13,17 +12,14 @@ export const useArtistsTracks = (
 ) => {
   const [artistsTracks, setartistsTracks] = React.useState<SpotifyApi.TrackObjectSimplified[]>()
   const { data: artistsAlbums } = useArtistsAlbums({ artistId, limit })
-  const fetchTracks = useFetchTracksFromManyAlbums()
+  const { fetch: fetchTracks, tracks } = useFetchTracksFromManyAlbums()
 
   const fetchAlbumTracks = React.useCallback(async () => {
     setartistsTracks(undefined)
     const albumIds = artistsAlbums?.items.map((album) => album.id)
     if (albumIds) {
       console.log("albumIds", albumIds)
-      const tracks = await fetchTracks(albumIds)
-      console.log("tracks", tracks)
-
-      setartistsTracks(tracks)
+      fetchTracks(albumIds)
     }
   }, [artistsAlbums, fetchTracks])
 
@@ -35,5 +31,6 @@ export const useArtistsTracks = (
 
   React.useEffect(() => {}, [artistId])
 
-  return { artistsTracks }
+  console.log("tracks", tracks)
+  return { tracks }
 }
