@@ -30,7 +30,7 @@ export const Artist = ({ nextTheme, toggleTheme }) => {
                     <FlexGridItem {...itemProps}>
                       <img
                         style={{ maxWidth: "100%", maxHeight: "100%" }}
-                        src={artist.images[0] && artist.images[0].url}
+                        src={artist.imags && artist.images.length > 0 ? artist.images[0].url : ""}
                         alt={artist.name}
                       />
                     </FlexGridItem>

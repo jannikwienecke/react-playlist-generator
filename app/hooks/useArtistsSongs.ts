@@ -31,6 +31,5 @@ export const useArtistsTracks = (
 
   React.useEffect(() => {}, [artistId])
 
-  console.log("tracks", tracks)
   return { tracks }
 }

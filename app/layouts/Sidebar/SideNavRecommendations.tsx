@@ -57,6 +57,7 @@ export const SideNavSuggestion: React.FC<Props> = ({
 
       <PreviewHolder>
         {store.artist?.slice(index.artist, index.artist + 10).map((artist, index) => {
+          console.log("artist - 1", artist)
           return (
             <motion.div
               className={css({ margin: "20px 5px", width: "30%", textAlign: "center" })}
@@ -78,7 +79,10 @@ export const SideNavSuggestion: React.FC<Props> = ({
                       setcurrentSongIndex(undefined)
                     }}
                   >
-                    <PreviewImage src={artist.images[0].url} alt="preview suggestion" />
+                    <PreviewImage
+                      src={artist.images.length > 0 ? artist.images[0].url : '"/logo.png"'}
+                      alt="preview suggestion"
+                    />
                   </ImageButton>
                 </ImageHolder>
                 <PreviewText>{artist.name}</PreviewText>

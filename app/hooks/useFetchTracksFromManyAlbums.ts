@@ -15,8 +15,6 @@ export const useFetchTracksFromManyAlbums = (options?: PropsFetchTracksFromManyA
       const promises: Promise<SpotifyApi.PagingObject<SpotifyApi.TrackObjectSimplified>>[] = []
 
       albumIds.map(async (albumId) => {
-        console.log("albumId:", albumId)
-
         const url = `albums/${albumId}/tracks?limit=${options?.limit || 50}`
 
         promises.push(client(url))

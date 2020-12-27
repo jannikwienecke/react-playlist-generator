@@ -50,7 +50,7 @@ export const useRecommendations = () => {
       const selectedArtistsTracks = _.shuffle(artistsTracks.slice(0, 100))
       console.log("selectedArtistsTracks", selectedArtistsTracks)
       const uris = selectedArtistsTracks.map((track) => track.uri)
-      console.log("uris", uris)
+      console.log("uris", uris.length)
       playWrapper(uris)
     }
   }, [artistsTracks, playWrapper])

@@ -29,7 +29,6 @@ const Layout = ({ title, children }: LayoutProps) => {
 
     if (pathIndexOrRedirect) return
 
-    console.log("replace")
     router.replace("/")
   })
 

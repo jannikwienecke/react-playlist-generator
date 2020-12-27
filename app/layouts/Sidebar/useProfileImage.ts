@@ -5,7 +5,8 @@ const useProfileImage = () => {
 
   let profileImageUrl = ""
   if (me?.images) {
-    profileImageUrl = me.images[0].url
+    console.log("me...", me)
+    profileImageUrl = me.images.length > 0 ? me.images[0].url : "/profile.png"
   }
 
   return { refetch, profileImageUrl, profileName: me?.display_name, ...me }

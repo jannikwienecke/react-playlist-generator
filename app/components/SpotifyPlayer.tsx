@@ -2,10 +2,9 @@ import { useSpotifyToken } from "app/context/AppProvider"
 import { TrackPagingObject } from "app/hooks/useTopArtistsTracks"
 import { SPOTIFY_PLAYER_NAME } from "app/spotifyConfig"
 import { dynamic } from "blitz"
+import _ from "lodash"
 import React from "react"
 import SpotifyWebPlayer from "react-spotify-web-playback"
-import _ from "lodash"
-import { useCurrentSong } from "../hooks/useCurrentSong"
 const SpotifyPlayer: React.FC<{
   height: string
   defaultTrackList: TrackPagingObject | undefined
