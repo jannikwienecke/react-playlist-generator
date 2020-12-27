@@ -7,26 +7,26 @@ import { TrackPagingObject } from "./useTopArtistsTracks"
 
 export const usePlay = () => {
   const resultDevices = useDevices()
-  const [deviceId, setDeviceId] = React.useState<string | undefined>()
+  const [url, setUrl] = React.useState<string | undefined>()
   const [uris, setUris] = React.useState<string[] | undefined>()
 
-  const url = `me/player/play?device_id=${deviceId}`
   const { mutate, error, ...result } = useSpotifyMutation<null>({ url, method: "PUT" })
 
   React.useEffect(() => {
-    if (deviceId && uris) {
+    if (url && uris) {
       mutate({ uris })
     }
-  }, [deviceId, mutate, uris])
+  }, [url, mutate, uris])
 
   const play = React.useCallback(
     (uris: string[]) => {
       const resultDeviceId = resultDevices.data?.devices.find(
         (device) => device.name === SPOTIFY_PLAYER_NAME
       )
+      const deviceId = resultDeviceId?.id ? resultDeviceId.id : undefined
+      const newUrl = deviceId ? `me/player/play?device_id=${deviceId}` : undefined
 
-      setDeviceId(resultDeviceId && resultDeviceId.id ? resultDeviceId.id : undefined)
-
+      setUrl(newUrl)
       setUris(uris)
     },
     [resultDevices.data?.devices]
