@@ -12,7 +12,7 @@ export const useFetchTracksFromManyAlbums = (options?: PropsFetchTracksFromManyA
       let tracks: SpotifyApi.TrackObjectSimplified[] = []
       console.log("albumIds === ", albumIds)
 
-      albumIds.forEach(async (albumId) => {
+      await albumIds.forEach(async (albumId) => {
         console.log("albumId:", albumId)
 
         const url = `albums/${albumId}/tracks?limit=${options?.limit || 50}`
